@@ -2,7 +2,7 @@
   "name": "sw-roller",
   "version": "1.0.0",
   "description": "This is a simple project that allows you to choose and roll dice.",
-  "main": "index.js",
+  "main": "./frontend/build/index.html",
   "directories": {
     "test": "test"
   },
