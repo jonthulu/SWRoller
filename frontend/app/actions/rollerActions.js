@@ -9,6 +9,12 @@ var rollerActions = {
     });
   },
 
+  clearAll: function rollerActionClearAll() {
+    appDispatcher.dispatch({
+      actionType: rollerEvents.ROLLER_CLEAR_ALL
+    });
+  },
+
   clearHand: function rollerActionClearHand() {
     appDispatcher.dispatch({
       actionType: rollerEvents.ROLLER_CLEAR_HAND

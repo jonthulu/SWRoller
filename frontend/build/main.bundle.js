@@ -23526,6 +23526,12 @@ $__System.register('e1', ['e2', 'e3'], function (_export) {
           });
         },
 
+        clearAll: function rollerActionClearAll() {
+          appDispatcher.dispatch({
+            actionType: rollerEvents.ROLLER_CLEAR_ALL
+          });
+        },
+
         clearHand: function rollerActionClearHand() {
           appDispatcher.dispatch({
             actionType: rollerEvents.ROLLER_CLEAR_HAND
@@ -32012,6 +32018,7 @@ $__System.register('e3', ['10f'], function (_export) {
     execute: function () {
       rollerEvents = keyMirror({
         ROLLER_ADD_TO_HAND: null,
+        ROLLER_CLEAR_ALL: null,
         ROLLER_CLEAR_HAND: null,
         ROLLER_CLEAR_RESULTS: null,
         ROLLER_REMOVE_FROM_HAND: null,
@@ -32064,6 +32071,10 @@ $__System.register('110', ['41', '42', '43', '44', '101', '103', '10c', 'e2', '1
         hand: [],
         rolled: _.clone(emptyRolled, true),
 
+        clearAll: function pRollerClearAll() {
+          privateRoller.rolled = _.clone(emptyRolled, true);
+          privateRoller.hand = [];
+        },
         clearRolled: function pRollerClearRolled() {
           privateRoller.rolled = _.clone(emptyRolled, true);
         },
@@ -32078,7 +32089,7 @@ $__System.register('110', ['41', '42', '43', '44', '101', '103', '10c', 'e2', '1
           // Then update it to undefined (R.update).
           // Then remove all undefined from the array (R.reject).
           // Then sort the array (R.sort).
-          privateRoller.hand = R.sort(diceSort, R.reject(R.equals(undefined), R.update(R.indexOf(privateRoller.hand, type), undefined, privateRoller.hand)));
+          privateRoller.hand = R.sort(diceSort, R.reject(R.equals(undefined), R.update(R.indexOf(type, privateRoller.hand), undefined, privateRoller.hand)));
         },
         rollDice: function pRollerRollDice(diceToRoll) {
           var face;
@@ -32180,6 +32191,11 @@ $__System.register('110', ['41', '42', '43', '44', '101', '103', '10c', 'e2', '1
               privateRoller.addToHand(type);
               rollerStore.emitChange();
             }
+            break;
+
+          case rollerEvents.ROLLER_CLEAR_ALL:
+            privateRoller.clearAll();
+            rollerStore.emitChange();
             break;
 
           case rollerEvents.ROLLER_CLEAR_RESULTS:
@@ -32362,7 +32378,7 @@ $__System.register('111', ['110', 'e', '10c', 'e1', 'e4', '10d'], function (_exp
                   'button',
                   {
                     className: 'btn btn-md btn-primary',
-                    onClick: this._onClearDiceClick,
+                    onClick: this._onClearAllClick,
                     disabled: this.state.inHand.length ? null : "disabled"
                   },
                   'Clear All'
@@ -32452,9 +32468,8 @@ $__System.register('111', ['110', 'e', '10c', 'e1', 'e4', '10d'], function (_exp
           rollerActions.removeFromHand(event.target.getAttribute('data-type'));
         },
 
-        _onClearDiceClick: function rollerClearDiceClick() {
-          rollerActions.clearHand();
-          rollerActions.clearResults();
+        _onClearAllClick: function rollerClearAllClick() {
+          rollerActions.clearAll();
         },
 
         _onRollDiceClick: function rollerRollDiceClick() {

@@ -18,6 +18,10 @@ var privateRoller = {
   hand:   [],
   rolled: _.clone(emptyRolled, true),
 
+  clearAll:            function pRollerClearAll() {
+    privateRoller.rolled = _.clone(emptyRolled, true);
+    privateRoller.hand   = [];
+  },
   clearRolled:         function pRollerClearRolled() {
     privateRoller.rolled = _.clone(emptyRolled, true);
   },
@@ -40,7 +44,7 @@ var privateRoller = {
       R.reject(
         R.equals(undefined),
         R.update(
-          R.indexOf(privateRoller.hand, type),
+          R.indexOf(type, privateRoller.hand),
           undefined,
           privateRoller.hand
         )
@@ -127,6 +131,11 @@ appDispatcher.register(function rolledRegister(action) {
         privateRoller.addToHand(type);
         rollerStore.emitChange();
       }
+      break;
+
+    case rollerEvents.ROLLER_CLEAR_ALL:
+      privateRoller.clearAll();
+      rollerStore.emitChange();
       break;
 
     case rollerEvents.ROLLER_CLEAR_RESULTS:

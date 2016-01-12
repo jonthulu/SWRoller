@@ -94,7 +94,7 @@ var Roller = React.createClass({
             >Roll</button>
             <button
               className="btn btn-md btn-primary"
-              onClick={this._onClearDiceClick}
+              onClick={this._onClearAllClick}
               disabled={this.state.inHand.length ? null : "disabled"}
             >Clear All</button>
           </div>
@@ -164,9 +164,8 @@ var Roller = React.createClass({
     );
   },
 
-  _onClearDiceClick: function rollerClearDiceClick() {
-    rollerActions.clearHand();
-    rollerActions.clearResults();
+  _onClearAllClick: function rollerClearAllClick() {
+    rollerActions.clearAll();
   },
 
   _onRollDiceClick: function rollerRollDiceClick() {
