@@ -16,7 +16,7 @@ var appSource = './app/main.js';
 var appFiles = './app/**/*.js';
 var sassFiles = './app/styles/sass/**/*.scss';
 var indexFiles = './app/index.html';
-var resourceFiles = ['./app/styles/**/*.png', './app/styles/**/*.otf'];
+var resourceFiles = ['./app/styles/**/*.png', './app/styles/**/*.otf', './app/styles/images/icons/favicon.ico'];
 var buildDir = isDev ? './build' : './dist';
 
 var timeLogger = function timeLogger(name, start) {
