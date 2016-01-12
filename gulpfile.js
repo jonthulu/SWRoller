@@ -11,7 +11,7 @@ var serveApp = function serveAppTask() {
       livereload:       false,
       directoryListing: false,
       open:             false,
-      port:             80
+      port:             8000
     }));
 };
 
