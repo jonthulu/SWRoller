@@ -6,7 +6,7 @@ import MainNav from './MainNav.react.js';
 import Bootstrap from 'bootstrap';
 
 class App extends React.Component {
-  render() {
+  render = () => {
     return (
       <div id="body-container">
         <MainNav />

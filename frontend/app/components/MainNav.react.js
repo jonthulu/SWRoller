@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-var MainNav = React.createClass({
-  render: function mainNavRender() {
+class MainNav extends React.Component {
+  render = () => {
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -55,6 +55,6 @@ var MainNav = React.createClass({
       </nav>
     );
   }
-});
+}
 
 export default MainNav;

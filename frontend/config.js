@@ -7,7 +7,7 @@ System.config({
       "runtime",
       "optimisation.modules.system"
     ],
-    "stage": "2"
+    "stage": "1"
   },
   paths: {
     "github:*": "jspm_packages/github/*",
@@ -26,6 +26,7 @@ System.config({
 
   map: {
     "babel": "npm:babel-core@5.8.34",
+    "babel-plugin-transform-class-properties": "npm:babel-plugin-transform-class-properties@6.4.0",
     "babel-runtime": "npm:babel-runtime@5.8.34",
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "clean-css": "npm:clean-css@3.4.8",
@@ -233,6 +234,13 @@ System.config({
     "npm:aws-sign2@0.6.0": {
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
       "url": "github:jspm/nodelibs-url@0.1.0"
+    },
+    "npm:babel-plugin-syntax-class-properties@6.3.13": {
+      "babel-runtime": "npm:babel-runtime@5.8.34"
+    },
+    "npm:babel-plugin-transform-class-properties@6.4.0": {
+      "babel-plugin-syntax-class-properties": "npm:babel-plugin-syntax-class-properties@6.3.13",
+      "babel-runtime": "npm:babel-runtime@5.8.34"
     },
     "npm:babel-runtime@5.8.34": {
       "process": "github:jspm/nodelibs-process@0.1.2"

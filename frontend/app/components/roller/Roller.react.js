@@ -8,37 +8,35 @@ import rollerStore from '../../stores/rollerStore.js';
 
 var diceList = _.keys(diceOrder);
 
-var Roller = React.createClass({
-  _onChangeHand: function rollerOnChangeHand() {
+class Roller extends React.Component {
+  state = {
+    inHand: rollerStore.getHand(),
+    rolled: rollerStore.getRolled()
+  }
+  
+  _onChangeHand = () => {
     this.setState({
       inHand: rollerStore.getHand()
     });
-  },
+  }
 
-  _onChangeRolled: function rollerOnChangeRolled() {
+  _onChangeRolled = () => {
     this.setState({
       rolled: rollerStore.getRolled()
     });
-  },
+  }
 
-  getInitialState: function rollerInitialState() {
-    return {
-      inHand: rollerStore.getHand(),
-      rolled: rollerStore.getRolled()
-    };
-  },
-
-  componentDidMount: function rollerComponentDidMount() {
+  componentDidMount = () => {
     rollerStore.addChangeListener(this._onChangeHand);
     rollerStore.addChangeListener(this._onChangeRolled);
-  },
+  }
 
-  componentWillUnmount: function rollerComponentWillUnmount() {
+  componentWillUnmount = () => {
     rollerStore.removeChangeListener(this._onChangeHand);
     rollerStore.removeChangeListener(this._onChangeRolled);
-  },
+  }
 
-  render: function rollerRender() {
+  render = () => {
     return (
       <div className="quickRoller col-lg-10 col-lg-offset-1">
         <div className="diceChoiceWrapper">
@@ -142,9 +140,9 @@ var Roller = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
-  _onAddDieClick: function rollerAddDieClick(event) {
+  _onAddDieClick = (event) => {
     if (!event.target.getAttribute('data-type')) {
       return;
     }
@@ -152,9 +150,9 @@ var Roller = React.createClass({
     rollerActions.addToHand(
       event.target.getAttribute('data-type')
     );
-  },
+  }
 
-  _onRemoveDieClick: function rollerRemoveDieClick(event) {
+  _onRemoveDieClick = (event) => {
     if (!event.target.getAttribute('data-type')) {
       return;
     }
@@ -162,15 +160,15 @@ var Roller = React.createClass({
     rollerActions.removeFromHand(
       event.target.getAttribute('data-type')
     );
-  },
+  }
 
-  _onClearAllClick: function rollerClearAllClick() {
+  _onClearAllClick = () => {
     rollerActions.clearAll();
-  },
+  }
 
-  _onRollDiceClick: function rollerRollDiceClick() {
+  _onRollDiceClick = () => {
     rollerActions.roll();
   }
-});
+}
 
 export default Roller;
