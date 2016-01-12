@@ -10,6 +10,7 @@ var serveApp = function serveAppTask() {
 
   gulp.src(buildFrontEndDir)
     .pipe(webserver({
+      host:             0.0.0.0,
       livereload:       false,
       directoryListing: false,
       open:             false,
