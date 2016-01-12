@@ -2,5 +2,6 @@
 front
 frontend/jspm_packages
 frontend/node_modules
+node_modules
 test
 swRoller.iml

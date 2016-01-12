@@ -2,12 +2,12 @@
   "name": "sw-roller",
   "version": "1.0.0",
   "description": "This is a simple project that allows you to choose and roll dice.",
-  "main": "./frontend/build/index.html",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/jonthulu/SWRoller/issues"
   },
-  "homepage": "https://github.com/jonthulu/SWRoller#readme"
+  "homepage": "https://github.com/jonthulu/SWRoller#readme",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-webserver": "^0.9.1"
+  }
 }

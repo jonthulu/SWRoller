@@ -107,9 +107,9 @@ var serveApp = function serveAppTask() {
 
   gulp.src(buildDir)
     .pipe(webserver({
-      livereload:       true,
+      livereload:       isDev,
       directoryListing: false,
-      open:             true
+      open:             isDev
     }));
 };
 
