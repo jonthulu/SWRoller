@@ -32551,12 +32551,13 @@ $__System.register('112', ['111', '3a', '3b', '3c', 'e'], function (_export) {
 $__System.register('1', ['38', '43', '112', 'e'], function (_export) {
   'use strict';
 
-  var Router, Route, Link, App, Home, React, AppRouter;
+  var Link, IndexRoute, Route, Router, App, Home, React, AppRouter;
   return {
     setters: [function (_) {
-      Router = _.Router;
-      Route = _.Route;
       Link = _.Link;
+      IndexRoute = _.IndexRoute;
+      Route = _.Route;
+      Router = _.Router;
     }, function (_2) {
       App = _2['default'];
     }, function (_3) {
@@ -32575,6 +32576,7 @@ $__System.register('1', ['38', '43', '112', 'e'], function (_export) {
             React.createElement(
               Route,
               { path: '/', component: App },
+              React.createElement(IndexRoute, { component: Home }),
               React.createElement(Route, { path: 'home', component: Home })
             )
           );

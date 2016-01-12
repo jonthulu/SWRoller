@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Link } from 'react-router';
+import { Link, IndexRoute, Route, Router } from 'react-router';
 
 import App from './components/App.react.js';
 import Home from './components/Home.react.js';
@@ -9,6 +9,7 @@ var AppRouter = React.createClass({
     return (
       <Router>
         <Route path="/" component={App}>
+          <IndexRoute component={Home} />
           <Route path="home" component={Home} />
         </Route>
       </Router>
