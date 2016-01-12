@@ -1,0 +1,71 @@
+body {
+  background: url("images/bg/bgcity1.png") no-repeat; }
+
+ul {
+  list-style-type: none; }
+
+#body-container > .container {
+  background-color: #597794;
+  color: #fff;
+  filter: alpha(opacity=90);
+  opacity: 0.9;
+  padding-bottom: 50px; }
+
+.quickRoller .instructions {
+  font-style: italic; }
+
+.quickRoller .diceBoxWrapper {
+  margin-top: 10px; }
+
+.quickRoller .box {
+  background-color: #334454;
+  opacity: 1; }
+
+.quickRoller .innerBox {
+  padding: 5px; }
+  .quickRoller .innerBox:empty {
+    display: none; }
+
+.quickRoller .dieImage, .quickRoller .dieSideImage, .quickRoller .resultImage {
+  width: 45px;
+  height: 45px;
+  margin: 1px 1px; }
+
+.quickRoller .removeFrom {
+  margin: 0 0 0 10px; }
+
+.quickRoller .emptyHand {
+  font-weight: bold;
+  font-style: italic;
+  padding: 5px 10px;
+  text-transform: uppercase; }
+
+.quickRoller .diceActionsWrapper {
+  margin: 10px 0 10px 10px; }
+
+.quickRoller .diceActions button {
+  margin-right: 10px; }
+
+.quickRoller .diceResultImages {
+  margin-left: 10px; }
+
+.quickRoller .diceResultDie {
+  margin: 0 2px; }
+
+.quickRoller .diceResultStatImages {
+  background-color: #78A0C7;
+  padding: 5px;
+  margin: 10px 10px; }
+  .quickRoller .diceResultStatImages:empty {
+    display: none; }
+
+.quickRoller .diceResultStats {
+  font-size: 1.2em;
+  margin: 0 20px; }
+
+.quickRoller .resultStatName {
+  font-weight: bold;
+  text-transform: capitalize; }
+
+.quickRoller .resultStatValue {
+  margin-left: 5px; }
