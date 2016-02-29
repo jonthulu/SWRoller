@@ -2,9 +2,9 @@ import events from 'events';
 import R from 'ramda';
 import _ from 'lodash';
 
-import appDispatcher from '../appDispatcher.js';
-import { diceValues, diceSort, diceSymbols, diceOpposites } from '../constants/dice.js';
-import rollerEvents from '../constants/rollerEvents.js';
+import appDispatcher from '../../appDispatcher.js';
+import { diceValues, diceSort, diceSymbols, diceOpposites } from '../../constants/dice.js';
+import rollerEvents from './rollerEvents.js';
 
 var CHANGE_EVENT = 'roller.change';
 

@@ -1,20 +1,20 @@
 import React from 'react';
-import { Link, IndexRoute, Route, Router } from 'react-router';
+import { browserHistory, Link, IndexRoute, Route, Router } from 'react-router';
 
-import App from './components/App.react.js';
-import Home from './components/Home.react.js';
+import SwApp from './components/swApp/swApp.react.js';
+import SwHome from './components/swHome/swHome.react.js';
 
-var AppRouter = React.createClass({
+var SwAppRouter = React.createClass({
   render() {
     return (
-      <Router>
-        <Route path="/" component={App}>
-          <IndexRoute component={Home} />
-          <Route path="home" component={Home} />
+      <Router history={browserHistory}>
+        <Route path="/" component={SwApp}>
+          <IndexRoute component={SwHome} />
+          <Route path="home" component={SwHome} />
         </Route>
       </Router>
     );
   }
 });
 
-React.render(<AppRouter />, document.getElementById('appContentWrapper'));
+React.render(<SwAppRouter />, document.getElementById('appContentWrapper'));

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-class MainNav extends React.Component {
+class SwMainNav extends React.Component {
   render = () => {
     return (
       <nav className="navbar navbar-default">
@@ -57,4 +57,4 @@ class MainNav extends React.Component {
   }
 }
 
-export default MainNav;
+export default SwMainNav;

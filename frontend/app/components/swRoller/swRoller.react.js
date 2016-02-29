@@ -1,14 +1,14 @@
 import React from 'react';
 import _ from 'lodash';
 
-import rollerActions from '../../actions/rollerActions.js';
+import rollerActions from '../roller/rollerActions.js';
 import paths from '../../constants/paths.js';
 import { diceValues, diceOrder, diceSymbols, diceOpposites } from '../../constants/dice.js';
-import rollerStore from '../../stores/rollerStore.js';
+import rollerStore from '../roller/rollerStore.js';
 
 var diceList = _.keys(diceOrder);
 
-class Roller extends React.Component {
+class SwRoller extends React.Component {
   state = {
     inHand: rollerStore.getHand(),
     rolled: rollerStore.getRolled()
@@ -171,4 +171,4 @@ class Roller extends React.Component {
   }
 }
 
-export default Roller;
+export default SwRoller;

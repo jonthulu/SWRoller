@@ -1,15 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import MainNav from './MainNav.react.js';
-
-import Bootstrap from 'bootstrap';
-
-class App extends React.Component {
+class SwLogin extends React.Component {
   render = () => {
     return (
       <div id="body-container">
-        <MainNav />
+        <SwMainNav />
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -27,4 +23,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default SwLogin;

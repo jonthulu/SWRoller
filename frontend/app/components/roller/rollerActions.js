@@ -1,5 +1,5 @@
-import appDispatcher from '../appDispatcher.js';
-import rollerEvents from '../constants/rollerEvents.js';
+import appDispatcher from '../../appDispatcher.js';
+import rollerEvents from './rollerEvents.js';
 
 var rollerActions = {
   addToHand: function rollerActionAddToHand(type) {
