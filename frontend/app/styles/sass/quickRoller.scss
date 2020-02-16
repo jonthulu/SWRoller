@@ -1,6 +1,8 @@
 .quickRoller {
-  input {
-    color: black;
+  .connection {
+    input, button {
+      color: black;
+    }
   }
 
   .instructions {

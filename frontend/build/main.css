@@ -11,7 +11,7 @@ ul {
   opacity: 0.9;
   padding-bottom: 50px; }
 
-.quickRoller input {
+.quickRoller .connection input, .quickRoller .connection button {
   color: black; }
 
 .quickRoller .instructions {

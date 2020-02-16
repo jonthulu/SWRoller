@@ -8,7 +8,7 @@ import rollerStore from '../roller/rollerStore.js';
 
 var diceList = _.keys(diceOrder);
 
-var socket = io.connect('http://54.189.241.134:8080/');
+var socket = io.connect('/');
 
 class SwRoller extends React.Component {
   state = {
@@ -96,7 +96,7 @@ class SwRoller extends React.Component {
   render = () => {
     return (
       <div className="quickRoller col-lg-10 col-lg-offset-1">
-        <div className="socketname">
+        <div className="connection">
           <label for="socketname">Shared room name: </label>
           <input type="text" value={this.state.broadcastName} onChange={this._onSocketName} name="socketname" />
           <button type="button" onClick={this._onBroadcast}>

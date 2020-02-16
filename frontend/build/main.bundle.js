@@ -32186,7 +32186,7 @@ $__System.register('111', ['110', '3a', '3b', '3c', 'e', '10c', 'e0', 'e3', '10d
       'use strict';
 
       diceList = _.keys(diceOrder);
-      socket = io.connect('http://54.189.241.134:8080/');
+      socket = io.connect('/');
 
       SwRoller = (function (_React$Component) {
         _inherits(SwRoller, _React$Component);
@@ -32286,7 +32286,7 @@ $__System.register('111', ['110', '3a', '3b', '3c', 'e', '10c', 'e0', 'e3', '10d
               { className: 'quickRoller col-lg-10 col-lg-offset-1' },
               React.createElement(
                 'div',
-                { className: 'socketname' },
+                { className: 'connection' },
                 React.createElement(
                   'label',
                   { 'for': 'socketname' },
