@@ -8,6 +8,8 @@ import rollerStore from '../roller/rollerStore.js';
 
 var diceList = _.keys(diceOrder);
 
+var socket = io.connect('https://982c6149476213812ac86233cc86322bdd6a-8080.app.online.visualstudio.com/');
+
 class SwRoller extends React.Component {
   state = {
     inHand: rollerStore.getHand(),
@@ -18,15 +20,27 @@ class SwRoller extends React.Component {
     this.setState({
       inHand: rollerStore.getHand()
     });
+
+    socket.emit('test', {
+      "hand" : rollerStore.getHand()
+    })
   }
 
   _onChangeRolled = () => {
     this.setState({
       rolled: rollerStore.getRolled()
     });
+
+    socket.emit('test', {
+      "rolled" : rollerStore.getRolled()
+    })
   }
 
   componentDidMount = () => {
+    socket.on('test', (data) => {
+      console.log('data');
+    })
+
     rollerStore.addChangeListener(this._onChangeHand);
     rollerStore.addChangeListener(this._onChangeRolled);
   }
@@ -39,6 +53,10 @@ class SwRoller extends React.Component {
   render = () => {
     return (
       <div className="quickRoller col-lg-10 col-lg-offset-1">
+        <div className="socketname">
+          <label for="socketname">Shared room name: </label>
+          <input type="text" name="socketname" />
+        </div>
         <div className="diceChoiceWrapper">
           <span className="diceChoiceInstructions instructions">
             Tap the dice below to add them to your hand.

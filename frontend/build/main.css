@@ -11,6 +11,9 @@ ul {
   opacity: 0.9;
   padding-bottom: 50px; }
 
+.quickRoller input {
+  color: black; }
+
 .quickRoller .instructions {
   font-style: italic; }
 
