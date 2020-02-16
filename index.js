@@ -12,5 +12,10 @@ app.use(express.static(__dirname + '/frontend/build'));
 
 io.on('connection', function(socket){
   console.log('a user connected');
+
+  socket.on('roll_message', (payload) => {
+    console.log(payload);
+    io.emit(payload.broadcastName, payload);
+  })
 });
 

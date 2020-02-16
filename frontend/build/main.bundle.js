@@ -32186,7 +32186,7 @@ $__System.register('111', ['110', '3a', '3b', '3c', 'e', '10c', 'e0', 'e3', '10d
       'use strict';
 
       diceList = _.keys(diceOrder);
-      socket = io.connect('https://982c6149476213812ac86233cc86322bdd6a-8080.app.online.visualstudio.com');
+      socket = io.connect('http://54.189.241.134:8080/');
 
       SwRoller = (function (_React$Component) {
         _inherits(SwRoller, _React$Component);
@@ -32200,7 +32200,41 @@ $__System.register('111', ['110', '3a', '3b', '3c', 'e', '10c', 'e0', 'e3', '10d
 
           this.state = {
             inHand: rollerStore.getHand(),
-            rolled: rollerStore.getRolled()
+            rolled: rollerStore.getRolled(),
+            isBroadcasting: false,
+            isListening: false,
+            broadcastName: ''
+          };
+
+          this._onBroadcast = function () {
+            _this.setState({
+              isBroadcasting: true
+            });
+          };
+
+          this._onListen = function () {
+            _this.setState({
+              isListening: true
+            });
+            _this.connect();
+          };
+
+          this.connect = function () {
+            socket.on(_this.state.broadcastName, function (event) {
+              console.log(_this.state);
+              if (_this.state.isListening) {
+                if (event.hand) {
+                  _this.setState({
+                    inHand: event.hand
+                  });
+                }
+                if (event.rolled) {
+                  _this.setState({
+                    rolled: event.rolled
+                  });
+                }
+              }
+            });
           };
 
           this._onChangeHand = function () {
@@ -32208,9 +32242,13 @@ $__System.register('111', ['110', '3a', '3b', '3c', 'e', '10c', 'e0', 'e3', '10d
               inHand: rollerStore.getHand()
             });
 
-            socket.emit('test', {
-              "hand": rollerStore.getHand()
-            });
+            console.log(_this.state);
+            if (_this.state.isBroadcasting) {
+              socket.emit('roll_message', {
+                'broadcastName': _this.state.broadcastName,
+                "hand": rollerStore.getHand()
+              });
+            }
           };
 
           this._onChangeRolled = function () {
@@ -32218,16 +32256,21 @@ $__System.register('111', ['110', '3a', '3b', '3c', 'e', '10c', 'e0', 'e3', '10d
               rolled: rollerStore.getRolled()
             });
 
-            socket.emit('test', {
-              "rolled": rollerStore.getRolled()
+            if (_this.state.isBroadcasting) {
+              socket.emit('roll_message', {
+                'broadcastName': _this.state.broadcastName,
+                "rolled": rollerStore.getRolled()
+              });
+            }
+          };
+
+          this._onSocketName = function (evt) {
+            _this.setState({
+              broadcastName: evt.target.value
             });
           };
 
           this.componentDidMount = function () {
-            socket.on('test', function (data) {
-              console.log('data');
-            });
-
             rollerStore.addChangeListener(_this._onChangeHand);
             rollerStore.addChangeListener(_this._onChangeRolled);
           };
@@ -32249,7 +32292,17 @@ $__System.register('111', ['110', '3a', '3b', '3c', 'e', '10c', 'e0', 'e3', '10d
                   { 'for': 'socketname' },
                   'Shared room name: '
                 ),
-                React.createElement('input', { type: 'text', name: 'socketname' })
+                React.createElement('input', { type: 'text', value: _this.state.broadcastName, onChange: _this._onSocketName, name: 'socketname' }),
+                React.createElement(
+                  'button',
+                  { type: 'button', onClick: _this._onBroadcast },
+                  'Broadcast'
+                ),
+                React.createElement(
+                  'button',
+                  { type: 'button', onClick: _this._onListen },
+                  'Listen'
+                )
               ),
               React.createElement(
                 'div',

@@ -8,22 +8,60 @@ import rollerStore from '../roller/rollerStore.js';
 
 var diceList = _.keys(diceOrder);
 
-var socket = io.connect('https://982c6149476213812ac86233cc86322bdd6a-8080.app.online.visualstudio.com/');
+var socket = io.connect('http://54.189.241.134:8080/');
 
 class SwRoller extends React.Component {
   state = {
     inHand: rollerStore.getHand(),
-    rolled: rollerStore.getRolled()
+    rolled: rollerStore.getRolled(),
+    isBroadcasting: false,
+    isListening: false,
+    broadcastName: '',
   }
   
+  _onBroadcast = () => {
+    this.setState({
+      isBroadcasting: true,
+    })
+  }
+
+  _onListen = () => {
+    this.setState({
+      isListening: true,
+    });
+    this.connect();
+  }
+
+  connect = () => {
+    socket.on(this.state.broadcastName, (event) => {
+      console.log(this.state);
+      if (this.state.isListening) {
+        if (event.hand) {
+          this.setState({
+            inHand: event.hand
+          })
+        }
+        if (event.rolled) {
+          this.setState({
+            rolled: event.rolled,
+          })
+        }
+      }
+    })
+  }
+
   _onChangeHand = () => {
     this.setState({
       inHand: rollerStore.getHand()
     });
 
-    socket.emit('test', {
-      "hand" : rollerStore.getHand()
-    })
+    console.log(this.state);
+    if (this.state.isBroadcasting) {
+      socket.emit('roll_message', {
+        'broadcastName': this.state.broadcastName,
+        "hand" : rollerStore.getHand()
+      })
+    }
   }
 
   _onChangeRolled = () => {
@@ -31,16 +69,21 @@ class SwRoller extends React.Component {
       rolled: rollerStore.getRolled()
     });
 
-    socket.emit('test', {
-      "rolled" : rollerStore.getRolled()
+    if (this.state.isBroadcasting) {
+      socket.emit('roll_message', {
+        'broadcastName': this.state.broadcastName,
+        "rolled" : rollerStore.getRolled()
+      });
+    }
+  }
+
+  _onSocketName = (evt) => {
+    this.setState({
+      broadcastName: evt.target.value
     })
   }
 
   componentDidMount = () => {
-    socket.on('test', (data) => {
-      console.log('data');
-    })
-
     rollerStore.addChangeListener(this._onChangeHand);
     rollerStore.addChangeListener(this._onChangeRolled);
   }
@@ -55,7 +98,13 @@ class SwRoller extends React.Component {
       <div className="quickRoller col-lg-10 col-lg-offset-1">
         <div className="socketname">
           <label for="socketname">Shared room name: </label>
-          <input type="text" name="socketname" />
+          <input type="text" value={this.state.broadcastName} onChange={this._onSocketName} name="socketname" />
+          <button type="button" onClick={this._onBroadcast}>
+            Broadcast
+          </button>
+          <button type="button" onClick={this._onListen}>
+            Listen
+          </button>
         </div>
         <div className="diceChoiceWrapper">
           <span className="diceChoiceInstructions instructions">
