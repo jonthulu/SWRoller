@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SwRoller from '../SwRoller/SwRoller.react.js';
+import SwRoller from '../swRoller/swRoller.react.js';
 
 class SwHome extends React.Component {
   render = () => {

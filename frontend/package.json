@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "bootstrap": "jspm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -33,6 +34,7 @@
       "flux": "npm:flux@^2.1.1",
       "keymirror": "npm:keymirror@^0.1.1",
       "lodash": "npm:lodash@^3.10.1",
+      "socket.io": "npm:socket.io@2.3.0",
       "ramda": "npm:ramda@^0.19.1",
       "react": "npm:react@^0.14.3",
       "react-router": "npm:react-router@^1.0.3",
@@ -46,5 +48,8 @@
       "clean-css": "npm:clean-css@^3.4.8",
       "core-js": "npm:core-js@^1.1.4"
     }
+  },
+  "dependencies": {
+    "socket.io": "^2.3.0"
   }
 }

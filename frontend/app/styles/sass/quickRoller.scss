@@ -1,4 +1,10 @@
 .quickRoller {
+  .connection {
+    input, button {
+      color: black;
+    }
+  }
+
   .instructions {
     font-style: italic;
   }

@@ -5,9 +5,12 @@
   "directories": {
     "test": "test"
   },
+  "engines": {
+    "node": "10"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,8 @@
   "homepage": "https://github.com/jonthulu/SWRoller#readme",
   "dependencies": {
     "gulp": "^3.9.0",
-    "gulp-webserver": "^0.9.1"
+    "gulp-webserver": "^0.9.1",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
   }
 }

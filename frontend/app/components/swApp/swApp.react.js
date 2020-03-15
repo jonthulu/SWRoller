@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import SwMainNav from '../SwMainNav/SwMainNav.react.js';
+import SwMainNav from '../swMainNav/swMainNav.react.js';
 
 import Bootstrap from 'bootstrap';
 
