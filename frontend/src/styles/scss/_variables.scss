@@ -1,0 +1,29 @@
+/*=== Colors ===*/
+$black: #333333;
+$teal: #50D2C2;
+$red: #D9534F;
+$yellow: #D9AB4F;
+$white: #fff;
+$template-color: #402020;
+$my-content-color: #20403C;
+$error: #CB5955;
+$focus: #0099E0;
+$sky-blue: #39B0DE;
+
+/*
+ * BOOTSTRAP OVERRIDES
+ */
+
+// Bootstrap grid breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// These fix a bug in bootstrap where they were 'rem' but it combined them with an 'em'.
+$custom-select-indicator-padding: 1em;
+$input-btn-padding-y: .375em !default;
+$input-btn-padding-x: .75em !default;

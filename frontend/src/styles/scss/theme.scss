@@ -1,0 +1,12 @@
+@import 'variables';
+@import 'browserSupport';
+
+a {
+  cursor: pointer;
+}
+
+* {
+  &:focus {
+    outline: none !important;
+  }
+}

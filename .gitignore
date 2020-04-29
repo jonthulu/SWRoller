@@ -1,7 +1,6 @@
 .idea
-front
-frontend/jspm_packages
 frontend/node_modules
+frontend/old
 node_modules
 test
 swRoller.iml
