@@ -1,4 +1,4 @@
-# Star Wars Dice Roller
+# Dice Roller
 
 This is a simple project that allows you to choose and roll dice.
 

@@ -1,0 +1,10 @@
+
+/* IE11 does not know what the main element is. */
+main {
+  display: block;
+}
+
+body {
+  /* Make sure the scrollbars behave correctly in IE11 */
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
