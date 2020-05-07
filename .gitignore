@@ -1,5 +1,7 @@
 .idea
+/dist
+/dist-dev
 node_modules
-old
-test
+/old
+/test
 swRoller.iml
