@@ -1,17 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-import SwRoller from '../../common/swRoller/SwRoller';
-import {swDiceSets} from '../../../stores/diceSets/swDiceSet/SwDiceSet';
+import DieSetSelector from '../../common/dieSetSelector/DieSetSelector';
 
 import './homePage.scss';
 
 /**
- * The MarketingPage component.
+ * The HomePage component.
  */
 function HomePage(): React.ReactElement {
+  const [backgroundUrl, setBackgroundUrl] = useState('');
+
   return (
-    <div id="home-page">
-      <SwRoller diceSetId={swDiceSets.generateId()} />
+    <div id="home-page" className="h-100">
+      <div className="container h-100" style={{backgroundImage: `url(${backgroundUrl})`}}>
+        <div className="row h-100">
+          <div className="column col-8">
+            <DieSetSelector updateBackground={setBackgroundUrl} />
+          </div>
+          <div className="column col-4">
+            Chat
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

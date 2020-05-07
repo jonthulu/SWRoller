@@ -1,12 +1,15 @@
 import lodash from 'lodash';
 import React from 'react';
 
-import {DiceStoreBase} from '../../../stores/diceSets/common/diceStoreBase';
-import {Die} from '../../../stores/diceSets/common/die';
+import DisplayDie from '../displayDie/DisplayDie';
+import {DiceStoreResult} from '../../../diceSets/common/diceStoreBase';
+import {Die} from '../../../diceSets/common/die';
+
+import './diceChooser.scss';
 
 type Props<SymbolType, StatsType> = {
   diceTypes: Record<string, Die<SymbolType>>;
-  diceSet: DiceStoreBase<SymbolType, StatsType>;
+  diceSet: DiceStoreResult<SymbolType, StatsType>;
 }
 
 /**
@@ -29,15 +32,8 @@ function DiceChooser<SymbolType, StatsType>({
 
       <div className="dice-choice box">
         <div className="inner-box">
-          {lodash.map(diceTypes, (die, diceName) => (
-            <a key={diceName} className="dice-choice-die">
-              <img
-                className="die-image"
-                src={die.imagePath}
-                alt={diceName}
-                onClick={(): void => diceSet.addToHand(die)}
-              />
-            </a>
+          {lodash.map(diceTypes, (die, dieName) => (
+            <DisplayDie key={dieName} display={die.display} onClick={(): void => diceSet.addToHand(die)} />
           ))}
         </div>
       </div>

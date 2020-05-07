@@ -3,8 +3,6 @@ import lodash from 'lodash';
 
 /**
  * The history object.
- *
- * @type {HistoryType}
  */
 export let routeHistory: HistoryType;
 

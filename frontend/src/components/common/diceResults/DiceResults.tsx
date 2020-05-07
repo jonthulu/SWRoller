@@ -1,10 +1,13 @@
 import lodash from 'lodash';
 import React from 'react';
 
-import {DiceStoreBase} from '../../../stores/diceSets/common/diceStoreBase';
+import {DiceStoreResult} from '../../../diceSets/common/diceStoreBase';
+
+import './diceResults.scss';
+import DisplayDie from '../displayDie/DisplayDie';
 
 type Props<SymbolType, StatsType> = {
-  diceSet: DiceStoreBase<SymbolType, StatsType>;
+  diceSet: DiceStoreResult<SymbolType, StatsType>;
 }
 
 /**
@@ -17,7 +20,7 @@ function DiceResults<SymbolType, StatsType>({
   diceSet
 }: Props<SymbolType, StatsType>): React.ReactElement | null
 {
-  const stateHistory = diceSet.state.history;
+  const stateHistory = diceSet.rollHistory;
   if (!stateHistory.length) {
     return null;
   }
@@ -30,21 +33,13 @@ function DiceResults<SymbolType, StatsType>({
         <div className="inner-box">
           <div className="dice-result-images">
             {lodash.map(lastItem.rolledSides, (rolledSide, iter) => (
-              <a key={`${rolledSide}${iter}`} className="dice-result-die">
-                <img
-                  className="die-side-image"
-                  alt={rolledSide.name}
-                  src={rolledSide.imagePath}
-                />
-              </a>
+              <DisplayDie key={`${rolledSide.name}${iter}`} display={rolledSide.display} />
             ))}
           </div>
 
           <div className="dice-result-stat-images">
-            {lodash.map(lastItem.images, (statImage, i) => (
-              <a key={`${statImage}${i}`}>
-                <img className="result-image" src={statImage} alt="result" />
-              </a>
+            {lodash.map(lastItem.displays, (display, i) => (
+              <DisplayDie key={`${display.text}${i}`} display={display} />
             ))}
           </div>
 

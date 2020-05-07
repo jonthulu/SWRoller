@@ -1,4 +1,6 @@
-import lodash from 'lodash';
+import {forEach} from 'lodash';
+
+import {DieDisplay} from './die';
 
 /**
  * The base class for a side of a die.
@@ -18,17 +20,17 @@ export class DieSide<SymbolType>
   /**
    * The path to the image of the side.
    */
-  imagePath = '';
+  display: DieDisplay;
 
   /**
    * The overall values for the die.
    */
   values: Record<string, number> = {};
 
-  constructor(sideName: string, imagePath: string, symbols: SymbolType[])
+  constructor(sideName: string, display: DieDisplay, symbols: SymbolType[])
   {
     this.name = sideName;
-    this.imagePath = imagePath;
+    this.display = display;
     this.symbols = symbols;
 
     this._mapSymbolsToValues();
@@ -43,13 +45,13 @@ export class DieSide<SymbolType>
   {
     this.values = {};
 
-    lodash.forEach(this.symbols, (symbol: SymbolType) => {
+    forEach(this.symbols, (symbol: SymbolType) => {
       if (typeof symbol !== 'object') {
         return;
       }
 
       // Typescript is not very smart, which is why we need 'as unknown as object'.
-      lodash.forEach(symbol as unknown as object, (statValue, statName) => {
+      forEach(symbol as unknown as object, (statValue, statName) => {
         if (typeof statValue !== 'number') {
           return;
         }
@@ -68,8 +70,8 @@ export class DieSide<SymbolType>
    */
   addStatsToAggregate(aggregate: Record<string, number>): Record<string, number>
   {
-    lodash.forEach(this.values, (statValue, statName) => {
-      if (statName === 'imagePath') {
+    forEach(this.values, (statValue, statName) => {
+      if (statName === 'display') {
         return;
       }
 

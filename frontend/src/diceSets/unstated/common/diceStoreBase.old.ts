@@ -1,11 +1,11 @@
 import {Container} from 'unstated';
 
-import {Die} from './die';
-import {DieSide} from './dieSide';
+import {Die, DieDisplay} from '../../common/die';
+import {DieSide} from '../../common/dieSide';
 
 export type RollHistory<SymbolType, StatsType> = {
   rolledSides: DieSide<SymbolType>[];
-  images: string[];
+  displays: DieDisplay[];
   stats: StatsType;
 }
 
@@ -16,8 +16,9 @@ type State<SymbolType, StatsType> = {
 
 /**
  * The dice base store.
+ * Designed to be used with unstated v1.
  */
-export abstract class DiceStoreBase<SymbolType, StatsType> extends Container<State<SymbolType, StatsType>>
+export abstract class DiceStoreBaseOld<SymbolType, StatsType> extends Container<State<SymbolType, StatsType>>
 {
   /**
    * The store creation id.
@@ -74,11 +75,11 @@ export abstract class DiceStoreBase<SymbolType, StatsType> extends Container<Sta
   /**
    * Records a roll in the state history.
    */
-  recordRoll(rolledSides: DieSide<SymbolType>[], images: string[], stats: StatsType): void
+  recordRoll(rolledSides: DieSide<SymbolType>[], displays: DieDisplay[], stats: StatsType): void
   {
     const newRoll = {
       rolledSides,
-      images,
+      displays,
       stats,
     };
 

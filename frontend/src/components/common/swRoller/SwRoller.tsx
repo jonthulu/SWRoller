@@ -1,42 +1,30 @@
 import React from 'react';
-import {Subscribe} from 'unstated';
 
 import DiceActions from '../diceActions/DiceActions';
 import DiceChooser from '../diceChooser/DiceChooser';
 import DiceHand from '../diceHand/DiceHand';
 import DiceResults from '../diceResults/DiceResults';
-import {swDiceSets, SwDiceSet} from '../../../stores/diceSets/swDiceSet/SwDiceSet';
+import {useSwDiceSet, getDiceTypes} from '../../../diceSets/swDiceSet/swDiceSet';
 
-type Props = {
-  diceSetId: string;
-}
+import './swRoller.scss';
 
 /**
  * The SwRoller component.
- *
- * @param props
- * @param props.diceSetId - A unique identifier for the dice set.
  */
-function SwRoller({diceSetId}: Props): React.ReactElement
+function SwRoller(): React.ReactElement
 {
-  const swDiceSetContainer = swDiceSets.get(diceSetId);
-  const diceTypes = swDiceSetContainer.getDiceTypes();
+  const diceTypes = getDiceTypes();
+  const swDiceSet = useSwDiceSet();
 
   return (
-    <div className="roller sw-roller">
-      <Subscribe to={[swDiceSetContainer]}>
-        {(swDiceSet: SwDiceSet): React.ReactElement => (
-          <>
-            <DiceChooser diceTypes={diceTypes} diceSet={swDiceSet} />
+    <div className="roller sw-roller column">
+      <DiceChooser diceTypes={diceTypes} diceSet={swDiceSet} />
 
-            <DiceHand diceSet={swDiceSet} />
+      <DiceHand diceSet={swDiceSet} />
 
-            <DiceActions diceSet={swDiceSet} />
+      <DiceActions diceSet={swDiceSet} />
 
-            <DiceResults diceSet={swDiceSet} />
-          </>
-        )}
-      </Subscribe>
+      <DiceResults diceSet={swDiceSet} />
     </div>
   );
 }

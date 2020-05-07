@@ -9,12 +9,6 @@ export interface HandlersInterface<T> {
 
 /**
  * Gets the case statement for an api store.
- *
- * @param {Symbol} state
- * @param {function} getFulfilled
- * @param {function} getRejected
- * @param {{pre: function, pending: function, fulfilled: function, rejected: function}} handlers
- * @returns {{}}
  */
 export function getCase<ReturnType>(
   state: symbol,

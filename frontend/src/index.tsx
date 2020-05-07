@@ -1,7 +1,6 @@
 /* eslint-disable import/default */
 
 import {createBrowserHistory as createHistory} from 'history';
-import {Provider} from 'unstated';
 import React from 'react';
 import {render} from 'react-dom';
 import {Router} from 'react-router-dom';
@@ -34,11 +33,9 @@ hotReloadStores(stores);
 const renderApplication = (Component: React.FC): void => {
   render(
     <AppContainer>
-      <Provider>
-        <Router history={routerHistory}>
-          <Component />
-        </Router>
-      </Provider>
+      <Router history={routerHistory}>
+        <Component />
+      </Router>
     </AppContainer>,
     document.getElementById('app')
   );

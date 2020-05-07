@@ -1,0 +1,17 @@
+.display-die {
+  display: inline-block;
+  height: 45px;
+  width: 45px;
+  margin: 1px 1px;
+  text-align: center;
+
+  .display-die-text {
+    font-size: 25px;
+  }
+
+  .show-die,
+  .show-die-side {
+    font-size: 150px;
+    font-family: "Courier New", Courier, monospace;
+  }
+}

@@ -1,10 +1,13 @@
 import lodash from 'lodash';
 import React from 'react';
 
-import {DiceStoreBase} from '../../../stores/diceSets/common/diceStoreBase';
+import DisplayDie from '../displayDie/DisplayDie';
+import {DiceStoreResult} from '../../../diceSets/common/diceStoreBase';
+
+import './diceHand.scss';
 
 type Props<SymbolType, StatsType> = {
-  diceSet: DiceStoreBase<SymbolType, StatsType>;
+  diceSet: DiceStoreResult<SymbolType, StatsType>;
 }
 
 /**
@@ -17,21 +20,14 @@ function DiceHand<SymbolType, StatsType>({
   diceSet
 }: Props<SymbolType, StatsType>): React.ReactElement
 {
-  const hand = diceSet.getHand();
+  const hand = diceSet.hand;
 
   return (
     <div className="dice-hand">
       <div className="dice-box box">
         <div className="inner-box">
-          {lodash.map(hand, (die, iter) => (
-            <a key={die.name + iter} className="dice-box-die">
-              <img
-                className="die-image"
-                src={die.imagePath}
-                alt={die.name}
-                onClick={(): void => diceSet.removeFromHand(die)}
-              />
-            </a>
+          {lodash.map(hand, (die, i) => (
+            <DisplayDie key={die.name + i} display={die.display} onClick={(): void => diceSet.removeFromHand(die)} />
           ))}
         </div>
 

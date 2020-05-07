@@ -1,4 +1,4 @@
-import {ApiBaseStore} from '../common/apiBaseStore';
+import {ApiStoreResult, useApiStore} from '../common/apiBaseStore';
 import {StoreCollection} from '../../common/StoreCollection';
 
 // import {request} from '../../../services/API';
@@ -6,27 +6,31 @@ import {StoreCollection} from '../../common/StoreCollection';
 /**
  * The api event facebook get all store.
  */
-export class ApiEventFacebookGetAllStore extends ApiBaseStore<object>
+export function useApiEventFacebookGetAllStore(): ApiStoreResult<string, undefined>
 {
   /**
    * Gets the imported facebook events for the user's client from the api.
    */
-  request(): void
+  const request = (): Promise<string> =>
   {
-    this.setPending();
-
     // request({
     //   method: 'get',
     //   url: '/v2/events/facebook',
     // }).then(
     //   (data) => {
-    //     this.setFulfilled(data);
+    //     return data;
     //   },
     //   (eventsGetError) => {
-    //     this.setRejected(eventsGetError);
+    //     throw eventsGetError;
     //   }
     // );
-  }
+
+    return Promise.resolve('it worked');
+  };
+
+  return useApiStore(request);
 }
 
-export const apiEventFacebookGetAllStores = new StoreCollection(ApiEventFacebookGetAllStore);
+export const apiEventFacebookGetAllStores = new StoreCollection(
+  useApiEventFacebookGetAllStore
+);

@@ -1,9 +1,11 @@
 import React from 'react';
 
-import {DiceStoreBase} from '../../../stores/diceSets/common/diceStoreBase';
+import {DiceStoreResult} from '../../../diceSets/common/diceStoreBase';
+
+import './diceActions.scss';
 
 type Props<SymbolType, StatsType> = {
-  diceSet: DiceStoreBase<SymbolType, StatsType>;
+  diceSet: DiceStoreResult<SymbolType, StatsType>;
 }
 
 /**
@@ -16,7 +18,7 @@ function DiceActions<SymbolType, StatsType>({
   diceSet
 }: Props<SymbolType, StatsType>): React.ReactElement
 {
-  const hand = diceSet.getHand();
+  const hand = diceSet.hand;
 
   return (
     <div className="dice-actions">

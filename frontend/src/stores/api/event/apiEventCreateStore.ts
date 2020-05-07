@@ -1,4 +1,4 @@
-import {ApiBaseStore} from '../common/apiBaseStore';
+import {useApiStore, ApiStoreResult} from '../common/apiBaseStore';
 import {StoreCollection} from '../../common/StoreCollection';
 
 // import {request} from '../../../services/API';
@@ -6,18 +6,16 @@ import {StoreCollection} from '../../common/StoreCollection';
 /**
  * The api event create store.
  */
-export class ApiEventCreateStore extends ApiBaseStore<object>
+export function useApiEventCreateStore(): ApiStoreResult<string, object>
 {
   /**
    * Creates a new event using the api.
    */
-  request(eventData: object): void
+  const request = (eventData: object): Promise<string> =>
   {
     if (!eventData) {
       throw new Error('Event Create: The event data is required.');
     }
-
-    this.setPending(false);
 
     // request({
     //   method: 'post',
@@ -33,7 +31,11 @@ export class ApiEventCreateStore extends ApiBaseStore<object>
     //     this.setRejected(eventCreateError, false);
     //   }
     // );
-  }
+
+    return Promise.resolve('it worked');
+  };
+
+  return useApiStore(request);
 }
 
-export const apiEventCreateStores = new StoreCollection(ApiEventCreateStore);
+export const apiEventCreateStores = new StoreCollection(useApiEventCreateStore);

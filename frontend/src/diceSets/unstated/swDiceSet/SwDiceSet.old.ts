@@ -1,16 +1,18 @@
 import lodash from 'lodash';
 import * as ramda from 'ramda';
 
-import {DiceStoreBase} from '../common/diceStoreBase';
-import {SwDie, SwDieSide, SwSymbol, dice, diceSymbols, diceOpposites, diceSort} from './swDice';
-import {StoreCollection} from '../../common/StoreCollection';
+import {DiceStoreBaseOld} from '../common/diceStoreBase.old';
+import {DieDisplay} from '../../common/die';
+import {SwDie, SwDieSide, SwSymbol, dice, diceSymbols, diceOpposites, diceSort} from '../../swDiceSet/swDice';
+import {StoreCollectionOld} from '../../../stores/unstated/common/StoreCollection.old';
 
 type StatsType = Record<string, number>;
 
 /**
  * Handles interactions with a set of SW dice.
+ * Designed to be used with unstated v1.
  */
-export class SwDiceSet extends DiceStoreBase<SwSymbol, StatsType>
+export class SwDiceSetOld extends DiceStoreBaseOld<SwSymbol, StatsType>
 {
   /**
    * Gets all the possible dice types in the set.
@@ -71,9 +73,9 @@ export class SwDiceSet extends DiceStoreBase<SwSymbol, StatsType>
     });
 
     const stats = this.calculateStats(rolledFaces);
-    const images = this.getImagesForStats(stats);
+    const displays = this.getDisplaysForStats(stats);
 
-    this.recordRoll(rolledFaces, images, stats);
+    this.recordRoll(rolledFaces, displays, stats);
   }
 
   /**
@@ -106,16 +108,16 @@ export class SwDiceSet extends DiceStoreBase<SwSymbol, StatsType>
   }
 
   /**
-   * Gets images for stats.
+   * Gets displays for stats.
    */
-  getImagesForStats(rolledStats: StatsType): string[]
+  getDisplaysForStats(rolledStats: StatsType): DieDisplay[]
   {
-    return lodash.reduce(rolledStats, (adjusted: string[], statValue, statName) => {
-      const symbolImage = diceSymbols[statName].imagePath;
-      lodash.times(statValue, () => adjusted.push(symbolImage));
+    return lodash.reduce(rolledStats, (adjusted: DieDisplay[], statValue, statName) => {
+      const display = diceSymbols[statName].display;
+      lodash.times(statValue, () => adjusted.push(display));
       return adjusted;
     }, []);
   }
 }
 
-export const swDiceSets = new StoreCollection(SwDiceSet);
+export const swDiceSets = new StoreCollectionOld(SwDiceSetOld);

@@ -1,0 +1,20 @@
+.sw-roller {
+  background-color: rgba(89, 119, 148, 0.6);
+  font-size: 14px;
+  padding: 1em;
+
+  .instructions {
+    font-style: italic;
+  }
+
+  .box {
+    background-color: rgba(51, 68, 84, 0.8);
+  }
+
+  .dice-chooser,
+  .dice-hand,
+  .dice-actions,
+  .dice-results {
+    margin-bottom: .75em;
+  }
+}

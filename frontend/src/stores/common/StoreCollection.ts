@@ -1,75 +1,76 @@
+import {Container, createContainer} from 'unstated-next';
 import {v4} from 'uuid';
 
-import {StoreConstructor} from '../constants/storeConstants';
+// import {StoreConstructor} from '../constants/storeConstants';
 
-/**
- * The singleton id.
- * @type {symbol}
- */
-export const singletonId = Symbol('$$singleton');
+// /**
+//  * The singleton id.
+//  * @type {symbol}
+//  */
+// export const singletonId = Symbol('$$singleton');
 
 /**
  * A collection of stores.
  */
-export class StoreCollection<StoreContainer>
+export class StoreCollection<Value, State = void>
 {
   /**
    * The list of stores by id.
    */
-  stores: Record<string, StoreContainer> = {};
+  stores: Record<string, Container<Value, State>> = {};
 
   /**
    * The singleton store.
    */
-  singletonStore: (StoreContainer | null) = null;
+  singletonStore: (Container<Value, State> | null) = null;
 
   /**
-   * The class used to create a new store.
+   * The useStore hook function.
    */
-  StoreClass: StoreConstructor<StoreContainer>;
+  useStoreHook: (initialState?: State) => Value;
 
-  constructor(StoreClass: StoreConstructor<StoreContainer>)
+  constructor(useStoreHook: (initialState?: State) => Value)
   {
-    this.StoreClass = StoreClass;
+    this.useStoreHook = useStoreHook;
   }
 
   /**
    * Gets the Store for the given id or creates one.
    */
-  get(id: string): StoreContainer
+  get(id: string): Container<Value, State>
   {
     const currentContainer = this.stores[id];
     if (currentContainer) {
       return currentContainer;
     }
 
-    if (!this.StoreClass) {
-      throw new Error('Could not create store because no Store class was defined.');
+    if (!this.useStoreHook) {
+      throw new Error('Could not create store because no useStoreHook was defined.');
     }
 
-    const classForId = new this.StoreClass(id);
-    this.stores[id] = classForId;
+    const newContainer = createContainer(this.useStoreHook);
+    this.stores[id] = newContainer;
 
-    return classForId;
+    return newContainer;
   }
 
   /**
    * Gets a single instance (singleton) of the store or creates one.
    */
-  single(): StoreContainer
+  single(): Container<Value, State>
   {
     if (this.singletonStore) {
       return this.singletonStore;
     }
 
-    if (!this.StoreClass) {
-      throw new Error('Could not create singleton store because no Store class was defined.');
+    if (!this.useStoreHook) {
+      throw new Error('Could not create singleton store because no useStoreHook was defined.');
     }
 
-    const classForId = new this.StoreClass(String(singletonId));
-    this.singletonStore = classForId;
+    const newContainer = createContainer(this.useStoreHook);
+    this.singletonStore = newContainer;
 
-    return classForId;
+    return newContainer;
   }
 
   /**

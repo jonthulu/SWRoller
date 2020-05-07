@@ -1,0 +1,34 @@
+.dice-results {
+  .inner-box {
+    padding: 5px;
+  }
+
+  .dice-result-images {
+    margin-left: 10px;
+
+    .display-die {
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+  }
+
+  .dice-result-stat-images {
+    background-color: rgba(39, 66, 93, 0.8);
+    margin: 10px;
+    padding: 5px;
+  }
+
+  .dice-result-stats {
+    font-size: 1.2em;
+    margin: 0 20px;
+  }
+
+  .result-stat-name {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  .result-stat-value {
+    margin-left: 5px;
+  }
+}
