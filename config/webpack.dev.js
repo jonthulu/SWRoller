@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/explicit-function-return-type */
+
 const dotEnv = require('dotenv');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 
-/**
+/*
  * Webpack Plugins
  */
 const HtmlPlugin = require('html-webpack-plugin');
@@ -10,17 +12,17 @@ const HtmlPlugin = require('html-webpack-plugin');
 /*
  * Local Imports
  */
-const commonConfigFactory = require('./webpack.common.js');
+const commonConfigFactory = require('./webpack.common');
 const helpers = require('./helpers');
 
-/**
+/*
  * Load the ENV file before doing anything else.
  */
 dotEnv.config({
   path: helpers.root('.env'),
 });
 
-/**
+/*
  * Webpack Environment Variables Config
  */
 const ENVIRONMENT_VARS = {

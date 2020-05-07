@@ -1,18 +1,20 @@
-import * as dotEnv from 'dotenv';
-import webpack from 'webpack';
-import webpackMerge from 'webpack-merge';
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/explicit-function-return-type */
 
-/**
+const dotEnv = require('dotenv');
+const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
+
+/*
  * Webpack Plugins
  */
-import CleanPlugin from 'clean-webpack-plugin';
-import HtmlPlugin from 'html-webpack-plugin';
+const CleanPlugin = require('clean-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 
 /*
  * Local Imports
  */
-import commonConfigFactory from './webpack.common.js';
-import helpers from './helpers';
+const commonConfigFactory = require('./webpack.common');
+const helpers = require('./helpers');
 
 /**
  * Load the ENV file before doing anything else.
@@ -21,7 +23,7 @@ dotEnv.config({
   path: helpers.root('.env'),
 });
 
-/**
+/*
  * Webpack Environment Variables Config
  */
 const ENVIRONMENT_VARS = {
@@ -37,7 +39,7 @@ const distFolder = 'dist';
 
 const commonConfig = commonConfigFactory(true);
 
-export default webpackMerge(commonConfig, {
+module.exports = webpackMerge(commonConfig, {
   mode: 'production',
 
   // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps

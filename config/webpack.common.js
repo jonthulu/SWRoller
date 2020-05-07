@@ -1,8 +1,9 @@
 /* eslint-disable no-sync, no-useless-escape */
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/explicit-function-return-type */
 
 const envSetup = process.env; // eslint-disable-line no-process-env
 
-/**
+/*
  * Webpack Plugins
  */
 const CopyPlugin = require('copy-webpack-plugin');
@@ -16,8 +17,7 @@ const helpers = require('./helpers');
 /**
  * Gets the common webpack config.
  *
- * @param {boolean=} isProd
- * @returns {{}}
+ * @param isProd
  */
 module.exports = function commonConfigFactory(isProd) {
   const shouldExtractCss = envSetup.DISABLE_HMR_CSS || isProd;
@@ -45,7 +45,7 @@ module.exports = function commonConfigFactory(isProd) {
     }))
   ];
 
-  /**
+  /*
    * Webpack Config
    */
   return {

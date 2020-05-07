@@ -1,6 +1,5 @@
 .idea
-frontend/node_modules
-frontend/old
 node_modules
+old
 test
 swRoller.iml
