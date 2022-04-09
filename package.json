@@ -46,7 +46,7 @@
     "mobx-logger": "^0.7.1",
     "mobx-react": "^6.1.1",
     "mobx-utils": "^5.4.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "ramda": "^0.27.0",
